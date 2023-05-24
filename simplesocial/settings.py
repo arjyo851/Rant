@@ -30,7 +30,7 @@ SECRET_KEY = 'eyin$ahrxi@j1%^=5-t6@#gs$k0y0!zn*8)ld@gjuo*s=3z5p$'
 DEBUG = True
 #DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = ['rant-django.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['Rant.onRender.com', '127.0.0.1']
 
 
 # Application definition
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -58,7 +59,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ROOT_URLCONF = 'simplesocial.urls'
 
 TEMPLATES = [
