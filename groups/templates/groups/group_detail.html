@@ -1,0 +1,49 @@
+{% extends 'groups/group_base.html' %}
+
+{% block pregroup %}
+
+<table class="table">
+	<thead>
+		<td scope="row">
+			<div class = "content alert">
+			<h1>{{group.name}}
+				<span class="btn">
+					{% if user in group.members.all %}
+						<a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-fill btn-danger"><span class="glyphicon glyphicon-remove-circle"></span>Leave</a>
+					{% else %}
+						<a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-fill btn-success"><span class="glyphicon glyphicon-ok-circle"></span>Join</a>
+
+					{% endif %}
+				</span>
+			</h1>
+			<h6">Member Count: {{group.members.count}}</h6>
+
+			</div>
+
+			{% endblock %}
+		</td>
+
+		<td scope="row card">
+			{% block group_content %}
+				{% if group.posts.count == 0 %}
+				<h6>No posts in this group yet!</h6>
+
+				{% else %}
+			
+			<div class="col list-group">
+
+					{% for post in group.posts.all %}
+					<div class="col list-group-item">
+						{% include "posts/_post.html" %}
+					</div>
+					{% endfor %}
+
+			</div>
+				{% endif %}
+			{% endblock %}
+		</td>
+	</thead>
+</table>
+
+
+
